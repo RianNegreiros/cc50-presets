@@ -1,0 +1,15 @@
+#include <cc50.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int
+main(void)
+{
+  srand(time(NULL));
+
+  int skittles = rand() % 1024;
+
+  printf("Olá! Eu sou uma máquina de balas falante! Adivinhe quantos Skittles têmdentro de mim. Dica: Estou pensando em um número entre 0 e 1023. Qual é
+ele?")
+}
