@@ -35,5 +35,14 @@ void
 sort(int values[], int n)
 {
     // TODO: implement an O(n^2) sort
+    for (i = 0; i < n; ++i){
+    for (j = i + 1; j < n; ++j){
+      if (values[i] > values[j]){
+         a = values[i];
+         values[i] = values[j];
+         values[j] = a;
+      }
+   }
+}
     return;
 }
