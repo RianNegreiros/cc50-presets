@@ -139,6 +139,24 @@ void
 init(void)
 {
     // TODO
+    int dsquared = (d * d);
+    int n = 0;
+
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            n = n + 1;
+            board[i][j] = (dsquared - n);
+        }
+    }
+
+    if ((d % 2) == 0)
+    {
+        int temp = board[d - 1][d - 2];
+        board[d - 1][d - 2] = board[d - 1][d - 3];
+        board[d - 1][d - 3] = temp;
+    }
 }
 
 
@@ -150,6 +168,24 @@ void
 draw(void)
 {
     // TODO
+
+    int n = 0;
+
+    for (int i = 0; i < d; i++)
+    {
+        n = (n + 1);
+
+        if (board[i][j] > 0)
+        {
+            printf("| %2d ", board[i][j]);
+        }
+
+        if (board[i][j] == 0)
+        {
+            printf("| __ ");
+        }
+    }
+    printf("|\n\n");
 }
 
 
@@ -162,6 +198,26 @@ bool
 move(int tile)
 {
     // TODO
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (tile == board[i][j])
+            {
+                int blanckspace = 0;
+
+                if (((x == (i - 1)) && (j == y)) || ((x == (i + 1)) && (j == y)) || ((i == x) && (y == (j - 1))) || ((i == x) && (y == (j + 1))))
+                {
+                    board[x][y] = tile;
+                    board[i][j] = blanckspace;
+                    x=i;
+                    y=j;
+
+                    return true;
+                }
+            }
+        }
+    }
     return false;
 }
 
@@ -175,5 +231,18 @@ bool
 won(void)
 {
     // TODO
-    return false;
+    int n = - 1;
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            n = n + 1;
+
+            if (board[i][j] != n)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
