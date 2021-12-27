@@ -8,10 +8,10 @@
  ***************************************************************************/
 
 // game's author
-#define AUTHOR "John Harvard"
+#define AUTHOR "Rian Negreiros"
 
 // game's title
-#define TITLE "Sudoku"
+#define TITLE "Sudoku CC50"
 
 // banner's colors
 #define FG_BANNER COLOR_CYAN
