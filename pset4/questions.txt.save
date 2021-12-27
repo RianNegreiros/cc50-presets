@@ -1,0 +1,3 @@
+I. Repare que main chama strcmp. O que significa se strcmp, após receber duas strings como argumentos, retornar 0 ? (Dica: RTFM)
+
+R. Que o programa foi executado com successo.
