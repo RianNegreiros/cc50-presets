@@ -1,0 +1,45 @@
+I. Repare que main chama strcmp. O que significa se strcmp, após receber duas strings como argumentos, retornar 0? (Dica: RTFM)
+   Notice that main calls strcmp. What does it mean if strcmp, after receiving two strings like arguments, return 0? (Hint: RTFM)
+A. Que o programa foi executado com successo
+   that the program ran successfully
+
+II. Como você reescreveria a linha abaixo, extraída de main, usando if e else?
+    How would you rewrite the line below, taken from main, using if and else?
+    int max = (!strcmp(g.level, "debug")) ? 9 : 1024;
+A.  if (!strcmp(g.level, "debug"))
+    {
+      max = 9;
+    }
+    else
+    {
+     max = 1024;
+    }
+
+III. Em que circunstâncias o uso de sscanf abaixo, extraído de main, retorna 2 em vez de 1?
+     Under what circumstances does the use of sscanf below, taken from main, return 2 instead of 1?
+     sscanf(argv[2], " %d %c", &g.number, &c)
+
+A.   Se o level for inválido ou seja diferente de: debug, n00b ou l33t
+     If the level is invalid or different from: debug, n00b or l33t
+
+IV. Que atributos de g representam as coordenadas onde cursor do usuário está?
+    What attributes of g represent the coordinates where the user's cursor is?
+
+A.  int x, y;
+
+V. Qual função (que nós escrevemos) você pode chamar para levar o cursor para essas coordenadas? (Dica: nós lhe dissemos alguns parágrafos atrás)
+   What function (which we wrote) can you call to bring the cursor to these coordinates? (Hint: we told you a few paragraphs ago)
+
+A. show_cursor
+
+VI. Perto de que linha de main você poderia adicionar elementos case para lidar com outras teclas além de N, R, e ctrl-L?
+    Next to which main line you could add case elements to handle others keys other than N, R, and ctrl-L?
+
+A. Sim
+   Yes
+
+VII. A maioria das placas n00b e l33t têm muitos espaços em branco. Mas quantos espaços em branco tem debug #1? E debug #2? E debug #9?
+     Most n00b and l33t cards have a lot of white space. But how many whitespaces does debug #1 have? And debug #2? And debug #9?
+
+A.   Um
+     One
