@@ -1,0 +1,20 @@
+0. Quantas cores diferentes cada formato suporta?
+   How many different colors does each format support?
+
+A. 16 million (2^24)
+
+1. Qual destes formatos suporta animação?
+   Which of these formats supports animation?
+
+A. GIF
+
+2. Qual é a diferença entre a compressão com perdas e sem perdas?
+   What is the difference between lossy and lossless compression?
+
+A. A técnica de compressão com perdas não restaura os dados em sua forma original, após a descompressão, por outro lado, a compactação sem perdas restaura e reconstrói os dados em sua forma original, após a descompressão.
+   The lossy compression technique does not restored the data in its original form after decompression on the other hand lossless compression restores and rebuilt the data in its original form, after decompression.
+
+3. Qual destes formatos é comprimido com perdas?
+   Which of these formats is lossy compressed?
+
+A. JPEG
