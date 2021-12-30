@@ -1,0 +1,53 @@
+0. Quantas cores diferentes cada formato suporta?
+   How many different colors does each format support?
+
+A. 16 million (2^24)
+
+1. Qual destes formatos suporta animação?
+   Which of these formats supports animation?
+
+A. GIF
+
+2. Qual é a diferença entre a compressão com perdas e sem perdas?
+   What is the difference between lossy and lossless compression?
+
+A. A técnica de compressão com perdas não restaura os dados em sua forma original, após a descompressão, por outro lado, a compactação sem perdas restaura e reconstrói os dados em sua forma original, após a descompressão.
+   The lossy compression technique does not restored the data in its original form after decompression on the other hand lossless compression restores and rebuilt the data in its original form, after decompression.
+
+3. Qual destes formatos é comprimido com perdas?
+   Which of these formats is lossy compressed?
+
+A. JPEG
+
+4. O que acontece, tecnicamente falando, quando um arquivo é removido de um sistema de arquivos FAT?
+   What happens, technically speaking, when a file is removed from a FAT files?
+
+A. Primeiro, o sistema modifica o nome do arquivo primeiro caractere na entrada do diretório do arquivo para sinalizar que o arquivo foi excluído e a entrada do diretório pode ser reciclada aderiu. Em segundo lugar, o sistema move todos os clusters FAT do arquivo refere-se à lista do disco rígido de cluster livre
+   First, the system modifies the filename’s first character in the file’s directory entry to signal that the file has been deleted and that the directory entry can be recycled. Second, the system moves all of the file’s FAT clusters to the hard drive’s list of free cluster
+
+5. O que alguém como você pode fazer para garantir (com alta probabilidade) que os arquivos que você excluir não poderão ser recuperados?
+   What can someone like you do to ensure (with high probability) that files that you delete cannot be recovered?
+
+A. Gutmann patterns
+
+6. O que é stdint.h?
+   What is stdint.h?
+
+A. O cabeçalho stdint.h define tipos inteiros, limites de tipos inteiros de largura especificada, limites de outros tipos inteiros e macros para expressões constantes inteiras. 
+   The stdint.h header defines integer types, limits of specified width integer types, limits of other integer types and macros for integer constant expressions.
+
+7. Porque se usa uint8_t, uint32_t, int32_t e uint16_t em um programa?
+   Why is used uint8_t, uint32_t, int32_t e uint16_t in an program ?
+
+A. Um char, short, int não designado
+   unsigned char, unsigned short, unsigned int
+
+8. Quantos bytes tem um BYTE, uma DWORD, um LONG e uma WORD, respectivamente?
+   How many bytes are in a BYTE, a DWORD, a LONG and a WORD, respectively?
+
+A. BYTE:2, DWORD:4, LONG:4, WORD:2
+
+9. O que (em ASCII, decimal ou hexadecimal) devem ser os dois primeiros bytes de qualquer arquivo BMP?
+   What (in ASCII, decimal or hexadecimal) should be the first two bytes of any BMP fil
+e?
+A. Must be

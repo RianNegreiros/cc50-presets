@@ -18,3 +18,102 @@ A. A técnica de compressão com perdas não restaura os dados em sua forma orig
    Which of these formats is lossy compressed?
 
 A. JPEG
+
+4. O que acontece, tecnicamente falando, quando um arquivo é removido de um sistema de arquivos FAT?
+   What happens, technically speaking, when a file is removed from a FAT files?
+
+A. Primeiro, o sistema modifica o nome do arquivo primeiro caractere na entrada do diretório do arquivo para sinalizar que o arquivo foi excluído e a entrada do diretório pode ser reciclada aderiu. Em segundo lugar, o sistema move todos os clusters FAT do arquivo refere-se à lista do disco rígido de cluster livre
+   First, the system modifies the filename’s first character in the file’s directory entry to signal that the file has been deleted and that the directory entry can be recycled. Second, the system moves all of the file’s FAT clusters to the hard drive’s list of free cluster
+
+5. O que alguém como você pode fazer para garantir (com alta probabilidade) que os arquivos que você excluir não poderão ser recuperados?
+   What can someone like you do to ensure (with high probability) that files that you delete cannot be recovered?
+
+A. Gutmann patterns
+
+
+6. O que é stdint.h?
+   What is stdint.h?
+
+A. O cabeçalho stdint.h define tipos inteiros, limites de tipos inteiros de largura especificada, limites de outros tipos inteiros e macros para expressões constantes inteiras.
+  The stdint.h header defines integer types, limits of specified width integer types, limits of other integer types and macros for integer constant expressions. In other words this is a new C/C++ header that defines a set of cross-platform types that can be used when you need an exact amount of bits, with or without the sign. You need 8 bits for an unsignet number use uint8_t you need 16 bits for an unsigned int just use uint16_t etc no matter that you are on windows, Arduino or Linux.
+
+7. Porque se usa uint8_t, uint32_t, int32_t e uint16_t em um programa?
+   Why do you use uint8_t, uint32_t, int32_t and uint16_t in a program?
+
+A.  If you need 8 bits for an unsignet number use uint8_t you need 16 bits for an unsigned int just use uint16_t etc no matter that you are on windows, Arduino or Linux.
+
+9. O que (em ASCII, decimal ou hexadecimal) devem ser os dois primeiros bytes de qualquer arquivo BMP?
+   What (in ASCII, decimal, or hexadecimal) should the first two bytes of any BMP file be?
+
+A. Dever BM ou 0x42 0x4D
+   Must be BM or 0x42 0x4D
+
+10. Qual é a diferença entre bfSize e biSize?
+    What the difference beetwen bfSize and biSize?
+
+A. bfSize é o tamanho de BITMAPFILEHEADER é BITMAPINFOHEADER combinados, biSize é o tamanho do BITMAPINFOHEADER
+
+11. O que significa se biHeight for negativo?
+    What means if biHeight is negative?
+
+A.  Se biHeight for negativo, o bitmap é um DIB de cima para baixo e sua origem é o canto superior esquerdo.
+     If biHeight is negative, the bitmap is a top-down DIB and its origin is the upper-left corner.
+
+12. Que campo em BITMAPINFOHEADER especifica a cor do BMP (bits por pixel)?
+    Which field in BITMAPINFOHEADER specifies the BMP color (bits per pixel)?
+
+A. BitsPerPixel
+
+13. Por que fopen pode retornar NULL em copy.c:32?
+    Why fopen can return NULL on copy.c:32?
+
+A. Se o arquivo não existir ou não for encontrado
+   If file doens't exist or cannot be founded
+
+14. Porque é que o terceiro argumento de fread é sempre 1 em nosso código?
+    Why the third argument of fread is always 1 in our code?
+
+A. Por que queremos ler apenas 1 elemento da stream
+   Why we want to read only 1 element from the stream
+
+15. Qual o valor que copy.c:69 atribui a padding se bi.biWidth é 3?
+    What value that's copy.c:69 assign to padding is bi.biWith is 3?
+
+A. preenchimento interno = (4 - (bi.biWidth * sizeof (RGBTRIPLE))% 4)% 4;
+  (4- (3 * 3 (RGBTRIPLE é igual a 3 bytes)% 4)% 4 = 3. então remo interno é igual a 3.
+  Se a largura for 3, o preenchimento será necessário, pois a linha de varredura deve ser um múltiplo de 4.
+  3 bytes são adicionados para trazer a linha de varredura para 12 bytes.
+  (3 pixels) × (3 bytes por pixel) + (3 bytes de preenchimento) = 12 bytes, que é de fato um múltiplo de 4.
+  
+   int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+ (4-(3*3(RGBTRIPLE equals 3 bytes)%4)%4=3. so int paddling is equals 3. 
+ If the width is 3, padding is necessary since the scanline must be a multiple of 4.
+ 3 bytes are added to bring the scanline to 12 bytes. 
+ (3 pixels) × (3 bytes per pixel) + (3 bytes of padding) = 12 bytes, which is indeed a multiple of 4.
+
+16. O que é que fseek faz?
+    What fseek does?
+
+A. Fseek permite lembrar ou avançar rapidamente dentro de um arquivo (altera a localização do ponteiro do arquivo).
+Em copy.c, fseek pula o preenchimento, se houver, e procura o próximo pixel.
+
+ Fseek allows to remind or fast-forward within a file (changes the location of the file pointer).
+In copy.c fseek skips over padding, if any, and looks for the next pixel.
+
+17. O que é SEEK_CUR?
+    What is SEEK_CUR?
+
+   Esta é uma constante inteira que, quando usada como o argumento de onde para a função fseek, especifica que o preenchimento fornecido
+é relativo à posição atual do arquivo. SEEK_CUR move a posição do ponteiro do arquivo para o local fornecido.
+(O valor de whence deve ser uma das constantes SEEK_SET, SEEK_CUR ou SEEK_END,
+para indicar se o deslocamento é relativo ao início do arquivo, a posição atual do arquivo,
+ou o final do arquivo, respectivamente.)
+(Função: int fseek (FILE * stream, long int offset, int whence).
+
+ Texto de origem
+This is an integer constant which, when used as the whence argument to the fseek function, specifies that the padding provided 
+is relative to the current file position. SEEK_CUR moves file pointer position to given location.
+(The value of whence must be one of the constants SEEK_SET, SEEK_CUR, or SEEK_END, 
+to indicate whether the offset is relative to the beginning of the file, the current file position, 
+or the end of the file, respectively.)
+(Function: int fseek (FILE *stream, long int offset, int whence).
