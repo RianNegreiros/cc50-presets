@@ -1,0 +1,55 @@
+0. O que é pneumoultramicroscopicossilicovulcanoconiose?
+   What is pneumoultramicroscopicosilicovulcanoconiosis?
+
+A. é uma forma de doença pulmonar ocupacional causada pela inalação de pó de sílica cristalina e é marcada por inflamação e cicatrizes na forma de lesões nodulares nos lobos superiores dos pulmões.
+   is a form of occupational lung disease caused by inhalation of crystalline silica dust, and is marked by inflammation and scarring in the form of nodular lesions in the upper lobes of the lungs.
+
+1. De acordo com a sua página do manual, o que getrusage fazer?
+   According to your man page, what does getrusage do?
+
+A. retorna medidas de uso de recursos para quem, que pode ser uma das seguintes: 
+   returns resource usage measures for who, which can be one of the following: RUSAGE_SELF, RUSAGE_CHILDREN, RUSAGE_THREAD
+
+2. De acordo com a mesma página, quantos membros tem uma variável do tipo struct rusage?
+   According to the same page, how many members does a variable of type struct rusage have?
+ 
+A. 16
+
+3. Porque você acha que passamos before e after por referência (em vez de por valor) para calculate, mesmo que nós não estejamos mudando os seus conteúdos?
+   Why do you think we pass before and after by reference (rather than by value) to calculate, even though we aren't changing their contents?
+
+A. O protótipo da função getrusage espera um ponteiro. Usar ponteiros, em vez de passar por valor, também é mais rápido e eficiente.
+   The getrusage function prototype expects a pointer. Using pointers, rather than passing by value, is also quicker and more efficient. 
+
+4. Explicar com a maior precisão possível, em um parágrafo ou mais, como main age para ler as palavras de um arquivo. Em outras palavras, nos convença de que você realmente entende como o for loop dessa função funciona.
+   Explain as accurately as possible, in a paragraph or more, how main acts to read the words from a file. In other words, convince us that you really understand how this function's for loop works.
+
+A. Após abrir e verificar se o arquivo foi aberto, o loop for itera até que o marcador EOF, ou final ou arquivo, seja alcançado. C é inicializado com o primeiro caractere do arquivo, apontado por fp. Cada iteração do loop for faz com que C seja atribuído o valor do próximo caractere no arquivo.
+
+Cada caractere, contido na variável C, é verificado para garantir que seja uma letra ou um apóstrofo, desde que o apóstrofo não apareça no início da palavra. Se for uma letra, o caractere será inserido no array WORD na posição INDEX. Depois que isso acontece, INDEX é incrementado para ir para a próxima posição na matriz.
+
+Se o tamanho de INDEX exceder o tamanho máximo permitido de uma palavra, conforme definido por LENGTH, o programa irá percorrer até o final da palavra e começar a procurar a próxima palavra, redefinindo o índice para 0. O mesmo é feito se um número é encontrado, dentro de uma palavra ou por conta própria.
+
+Se a matriz não contiver números, com apóstrofos iniciais, e estiver abaixo do comprimento máximo de uma palavra, deve ser uma palavra, por isso recebe um terminador nulo. Durante o tempo, a palavra é verificada quanto a erros ortográficos. Se não for encontrada no dicionário, a palavra será impressa e o número total de erros ortográficos detectados aumentará em 1.
+
+  After opening and checking that the file has opened, the for loop iterates until the EOF, or end or file, marker is reached. C is initialized with the first character from the file, pointed to by fp. Each iteration of the for loop causes C to be assigned the value of the next character in the file. 
+
+Each character, contained in variable C, is checked to ensure it is a letter or an apostrophe, as long as the apostrophe does not appear at the beginning of the word. If it is a letter, the character will be inserted into the WORD array at the INDEX position. After this happens INDEX is incremented to go to the next position in the array. 
+
+If the size of INDEX exceeds the maximum permitted size of a word, as defined by LENGTH, the program will cycle to the end of the word and start looking for the next word, by resetting index to 0. The same thing is done if a number is found, within a word or on its own. 
+
+If the array contains no numbers, starting apostrophes, and is below the maximum length of a word, it must be a word so it is given a null terminator. While being timed, the word is checked for misspellings. If it is not found in the dictionary, the word is printed out and the total number of misspellings caught is increased by 1.
+
+5. Porque você acha que nós usamos fgetc para ler cada caracter de cada palavra ao vez ao
+invés de fscanf com uma string formatada como "%s" para ler palavras inteiras de uma
+vez? Dito de outra forma, que problemas poderiam surgir ao depender de fscanf para
+realizar essa tarefa?
+
+Why do you think we use fgetc to read every character of every word in turn
+instead of fscanf with a string formatted as "%s" to read whole words from a
+turn? In other words, what problems could arise when relying on fscanf for
+perform this task?
+
+A. fgetc is a more effective tool for examining 1 character at a time, to check that it is a valid letter. Fscanf, by default, ignores whitespace, which we can use with fgetc to identify the end of a word.
+  fgetc is a more effective tool for examining 1 character at a time, to check that it is a valid letter. Fscanf, by default, ignores whitespace, which we can use with fgetc to identify the end of a word. 
+
