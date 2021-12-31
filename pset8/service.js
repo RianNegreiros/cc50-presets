@@ -44,7 +44,9 @@ var shuttle = null;
 google.load("earth", "1");
 
 // load version 3 of the Google Maps API
-google.load("maps", "3", {other_params: "sensor=false"});
+google.load("maps", "3", {
+    other_params: "sensor=false"
+});
 
 
 /*
@@ -54,9 +56,52 @@ google.load("maps", "3", {other_params: "sensor=false"});
  * Drops up passengers if their stop is nearby.
  */
 
-function dropoff()
-{
-    alert("TODO");
+var dropOffHouse;
+var houseName;
+
+function dropoff() {
+    if (dropOffs.length == maxDropOffs) {
+        alert("You've dropped everyone (minus freshmen) off! Huzzah!");
+        return;
+    }
+
+    // is shuttle close enough to any of the houses?
+    for (house in HOUSES) {
+        var d = Math.floor(shuttle.distance(HOUSES[house].lat, HOUSES[house].lng));
+        if (d <= 30) {
+            dropoffHouse = HOUSES[house];
+            houseName = house;
+            break;
+        }
+    }
+
+    if (dropoffHouse == null) {
+        $("#announcements").html("There is no nearby house.");
+        return false;
+    }
+
+    // of the passengers on the bus, who belongs at this house?
+    for (var i = 0; i < shuttle.seats.length; i++) {
+        var passenger = shuttle.seats[i];
+        if (passenger != null) {
+            if (passenger.house == houseName) {
+                console.log("Dropping off " + passenger.name + " at " + houseName);
+                dropOffs.push(passenger);
+                passenger.droppedOff = 1;
+                shuttle.seats[i] = null;
+                occupiedSeats--;
+
+                $("#points").html(dropOffs.length);
+                announceDropOff(passenger);
+            }
+        }
+    }
+
+    chart();
+
+    if (dropOffs.length == maxDropOffs) {
+        alert("You've dropped everyone (minus freshmen) off! Huzzah!");
+    }
 }
 
 
@@ -67,11 +112,9 @@ function dropoff()
  * Called if Google Earth fails to load.
  */
 
-function failureCB(errorCode) 
-{
+function failureCB(errorCode) {
     // report error unless plugin simply isn't installed
-    if (errorCode != ERR_CREATE_PLUGIN)
-    {
+    if (errorCode != ERR_CREATE_PLUGIN) {
         alert(errorCode);
     }
 }
@@ -84,8 +127,7 @@ function failureCB(errorCode)
  * Handler for Earth's frameend event.
  */
 
-function frameend() 
-{
+function frameend() {
     shuttle.update();
 }
 
@@ -97,8 +139,7 @@ function frameend()
  * Called once Google Earth has loaded.
  */
 
-function initCB(instance) 
-{
+function initCB(instance) {
     // retain reference to GEPlugin instance
     earth = instance;
 
@@ -113,12 +154,12 @@ function initCB(instance)
 
     // instantiate shuttle
     shuttle = new Shuttle({
-     heading: HEADING,
-     height: HEIGHT,
-     latitude: LATITUDE,
-     longitude: LONGITUDE,
-     planet: earth,
-     velocity: VELOCITY
+        heading: HEADING,
+        height: HEIGHT,
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        planet: earth,
+        velocity: VELOCITY
     });
 
     // synchronize camera with Earth
@@ -145,70 +186,60 @@ function initCB(instance)
  * Handles keystrokes.
  */
 
-function keystroke(event, state)
-{
+function keystroke(event, state) {
     // ensure we have event
-    if (!event)
-    {
+    if (!event) {
         event = window.event;
     }
 
     // left arrow
-    if (event.keyCode == 37)
-    {
+    if (event.keyCode == 37) {
         shuttle.states.turningLeftward = state;
         return false;
     }
 
     // up arrow
-    else if (event.keyCode == 38)
-    {
+    else if (event.keyCode == 38) {
         shuttle.states.tiltingUpward = state;
         return false;
     }
 
     // right arrow
-    else if (event.keyCode == 39)
-    {
+    else if (event.keyCode == 39) {
         shuttle.states.turningRightward = state;
         return false;
     }
 
     // down arrow
-    else if (event.keyCode == 40)
-    {
+    else if (event.keyCode == 40) {
         shuttle.states.tiltingDownward = state;
         return false;
     }
 
     // A, a
-    else if (event.keyCode == 65 || event.keyCode == 97)
-    {
+    else if (event.keyCode == 65 || event.keyCode == 97) {
         shuttle.states.slidingLeftward = state;
         return false;
     }
 
     // D, d
-    else if (event.keyCode == 68 || event.keyCode == 100)
-    {
+    else if (event.keyCode == 68 || event.keyCode == 100) {
         shuttle.states.slidingRightward = state;
         return false;
     }
-  
+
     // S, s
-    else if (event.keyCode == 83 || event.keyCode == 115)
-    {
-        shuttle.states.movingBackward = state;     
+    else if (event.keyCode == 83 || event.keyCode == 115) {
+        shuttle.states.movingBackward = state;
         return false;
     }
 
     // W, w
-    else if (event.keyCode == 87 || event.keyCode == 119)
-    {
-        shuttle.states.movingForward = state;    
+    else if (event.keyCode == 87 || event.keyCode == 119) {
+        shuttle.states.movingForward = state;
         return false;
     }
-  
+
     return true;
 }
 
@@ -220,24 +251,23 @@ function keystroke(event, state)
  * Loads application.
  */
 
-function load()
-{
+function load() {
     // embed 2D map in DOM
     var latlng = new google.maps.LatLng(LATITUDE, LONGITUDE);
     map = new google.maps.Map(document.getElementById("map"), {
-     center: latlng,
-     disableDefaultUI: true,
-     mapTypeId: google.maps.MapTypeId.ROADMAP,
-     navigationControl: true,
-     scrollwheel: false,
-     zoom: 17
+        center: latlng,
+        disableDefaultUI: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        navigationControl: true,
+        scrollwheel: false,
+        zoom: 17
     });
 
     // prepare shuttle's icon for map
     bus = new google.maps.Marker({
-     icon: "http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/bus.png",
-     map: map,
-     title: "you are here"
+        icon: "http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/bus.png",
+        map: map,
+        title: "you are here"
     });
 
     // embed 3D Earth in DOM
@@ -252,11 +282,9 @@ function load()
  * Picks up nearby passengers.
  */
 
-function pickup()
-{
+function pickup() {
     var result = doPickup();
-    switch (result)
-    {
+    switch (result) {
         case 0:
             //$("#announcements").html("Just picked someone up!");
             break;
@@ -280,17 +308,15 @@ function pickup()
  * Populates Earth with passengers and houses.
  */
 
-function populate()
-{
+function populate() {
     // mark houses
-    for (var house in HOUSES)
-    {
+    for (var house in HOUSES) {
         // plant house on map
         new google.maps.Marker({
-         icon: "http://google-maps-icons.googlecode.com/files/home.png",
-         map: map,
-         position: new google.maps.LatLng(HOUSES[house].lat, HOUSES[house].lng),
-         title: house
+            icon: "http://google-maps-icons.googlecode.com/files/home.png",
+            map: map,
+            position: new google.maps.LatLng(HOUSES[house].lat, HOUSES[house].lng),
+            title: house
         });
     }
 
@@ -298,8 +324,7 @@ function populate()
     var url = "http://cdn.cs50.net/2010/fall/psets/8/pset8";
 
     // scatter passengers
-    for (var i = 0; i < PASSENGERS.length; i++)
-    {
+    for (var i = 0; i < PASSENGERS.length; i++) {
         // pick a random building
         var building = BUILDINGS[Math.floor(Math.random() * BUILDINGS.length)];
 
@@ -339,10 +364,10 @@ function populate()
 
         // add marker to map
         var marker = new google.maps.Marker({
-         icon: "http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/man.png",
-         map: map,
-         position: new google.maps.LatLng(building.lat, building.lng),
-         title: PASSENGERS[i].name + " at " + building.name
+            icon: "http://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/man.png",
+            map: map,
+            position: new google.maps.LatLng(building.lat, building.lng),
+            title: PASSENGERS[i].name + " at " + building.name
         });
     }
 }
@@ -355,8 +380,7 @@ function populate()
  * Handler for Earth's viewchange event.
  */
 
-function viewchange() 
-{
+function viewchange() {
     // keep map centered on shuttle's marker
     var latlng = new google.maps.LatLng(shuttle.position.latitude, shuttle.position.longitude);
     map.setCenter(latlng);
@@ -371,8 +395,7 @@ function viewchange()
  * Unloads Earth.
  */
 
-function unload()
-{
+function unload() {
     google.earth.removeEventListener(earth.getView(), "viewchange", viewchange);
     google.earth.removeEventListener(earth, "frameend", frameend);
 }
