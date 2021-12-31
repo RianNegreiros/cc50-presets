@@ -254,7 +254,22 @@ function load()
 
 function pickup()
 {
-    alert("TODO");
+    var result = doPickup();
+    switch (result)
+    {
+        case 0:
+            //$("#announcements").html("Just picked someone up!");
+            break;
+        case 1:
+            $("#announcements").html("There is no one near the shuttle.");
+            break;
+        case 2:
+            $("#announcements").html("No more seats on the shuttle!");
+            break;
+        default:
+            // do nothing
+            break;
+    }
 }
 
 
