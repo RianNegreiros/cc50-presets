@@ -9,3 +9,5 @@ O CC50 tenta ser o mais fiel possível ao original. Todo o material das aulas e 
 Os alunos aprendem muito sobre como computadores e a internet funcionam, e sobre programação, então após terminar o curso, você terá uma ótima base para inciar seus projetos em Webdesign, Bancos de Dados, Sistemas Eletrônicos, programação de Software, entre outros.
 
 Além disso você aprenderá a pensar algoritmicamente e a enxergar os problemas do mundo real de um novo ponto de vista. Aqui você aprende coisas que com certeza podem ser úteis para alunos de qualquer curso, com qualquer ideal de carreira.
+
+<a href="cc50Certificate.pdf" type="application/pdf">Certificado</a>
