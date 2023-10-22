@@ -10,4 +10,5 @@ Os alunos aprendem muito sobre como computadores e a internet funcionam, e sobre
 
 Além disso você aprenderá a pensar algoritmicamente e a enxergar os problemas do mundo real de um novo ponto de vista. Aqui você aprende coisas que com certeza podem ser úteis para alunos de qualquer curso, com qualquer ideal de carreira.
 
+![Certificado](./cc50Certificate.png)
 <a href="cc50Certificate.pdf" type="application/pdf">Certificado</a>
